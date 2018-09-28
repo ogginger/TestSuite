@@ -3,20 +3,24 @@
 define([
   "TestSuite_stable",
   "Functions/log",
-  "tests/xGenerateTest_SimplePassingTest_ReturnsPassingTest"
+  "tests/TestSuite_add_SimpleTest_AddsTestToTestCollection",
+	"tests/TestSuite_add_AsyncTest_AddsAsyncTestToAsyncTestCollection"
 ], function(
   TestSuite_stable,
   log,
-  xGenerateTest_SimplePassingTest_ReturnsPassingTest
+  TestSuite_add_SimpleTest_AddsTestToTestCollection,
+	TestSuite_add_AsyncTest_AddsAsyncTestToAsyncTestCollection
 ) {
   return TestSuite_stable.extend({
     "initialize": function() {
       log("test_TestSuite initialized successfully!");
       var xTestSuite = this;
 
-	xTestSuite.add( xGenerateTest_SimplePassingTest_ReturnsPassingTest );
+//	xTestSuite.add( TestSuite_add_SimpleTest_AddsTestToTestCollection );
+	xTestSuite.add( TestSuite_add_AsyncTest_AddsAsyncTestToAsyncTestCollection );
 
-	xTestSuite.bTestAll();
+
+	xTestSuite.test();
     }
   });
 });

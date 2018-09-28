@@ -7,6 +7,7 @@ define([
 	"rsvp",
 	"Functions/bIsObjectEqual",
 	"Functions/log",
+	"Functions/add",
 	"xGenerateTest",
 	"xAddTest",
 	"bTestAll"
@@ -17,6 +18,7 @@ define([
 	rsvp,
 	bIsObjectEqual,
 	log,
+	add,
 	xGenerateTest,
 	xAddTest,
 	bTestAll
@@ -36,7 +38,8 @@ define([
     //Methods		
     "xAddTest": xAddTest, 
     "xGenerateTest": xGenerateTest,
-    "bTestAll": bTestAll
+    "bTestAll": bTestAll,
+    "add": add
 		
   });
 });   
