@@ -11,9 +11,9 @@ define([
 ) {
 	return {
 		"Name":"TestSuite_add_AsyncTest_AddsAsyncTestToAsyncTestCollection",
-		"Input": new TestSuite(),
-		"Function": function( Input ) {
-			Input.add( xGenerateAsyncTest({
+		"Input": { 
+			"Object": new TestSuite({ "MethodUnderTest": "AsyncTest" }),
+			"Options": {
 				"Async": true,
 				"Name": "AsyncTest",
 				"Input": undefined,
@@ -23,11 +23,14 @@ define([
 					});
 				},
 				"ExpectedOutput": true
-			}));	
+			}
 		},
-		"ExpectedOutput": {},
+		"Function": function( Input ) {
+			return Input.Object.add( Input.Options );
+		},
+		"ExpectedOutput": {"MethodUnderTest":"AsyncTest","TestCollection":[],"AsyncTestCollection":[{"Name":"AsyncTest"}],"Debug":true},
 		"Comparator": {
-			"Debug": true,
+			"Debug": false,
 			"Object": true
 		}
 	};

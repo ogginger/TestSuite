@@ -16,9 +16,8 @@ define([
       log("test_TestSuite initialized successfully!");
       var xTestSuite = this;
 
-//	xTestSuite.add( TestSuite_add_SimpleTest_AddsTestToTestCollection );
+	xTestSuite.add( TestSuite_add_SimpleTest_AddsTestToTestCollection );
 	xTestSuite.add( TestSuite_add_AsyncTest_AddsAsyncTestToAsyncTestCollection );
-
 
 	xTestSuite.test();
     }

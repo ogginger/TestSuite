@@ -10,7 +10,9 @@ define([
 	"Functions/add",
 	"xGenerateTest",
 	"xAddTest",
-	"bTestAll"
+	"bTestAll",
+	"xGenerateAsyncTest",
+	"bTestAllAsync"
 ], function(
 	$,
 	_,
@@ -21,7 +23,9 @@ define([
 	add,
 	xGenerateTest,
 	xAddTest,
-	bTestAll
+	bTestAll,
+	xGenerateAsyncTest,
+	bTestAllAsync
 ) {
   return backbone.Model.extend({
 
@@ -39,6 +43,8 @@ define([
     "xAddTest": xAddTest, 
     "xGenerateTest": xGenerateTest,
     "bTestAll": bTestAll,
+    "xGenerateAsyncTest": xGenerateAsyncTest,
+    "bTestAllAsync": bTestAllAsync,
     "add": add
 		
   });
