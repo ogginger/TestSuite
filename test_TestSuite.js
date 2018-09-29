@@ -16,9 +16,15 @@ define([
       log("test_TestSuite initialized successfully!");
       var xTestSuite = this;
 
+	/*//Add
 	xTestSuite.add( TestSuite_add_SimpleTest_AddsTestToTestCollection );
 	xTestSuite.add( TestSuite_add_AsyncTest_AddsAsyncTestToAsyncTestCollection );
+	//*/
 
+	///test
+	
+	//*/
+	
 	xTestSuite.test();
     }
   });
