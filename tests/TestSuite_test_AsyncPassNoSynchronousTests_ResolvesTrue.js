@@ -1,32 +1,18 @@
-//TestSuite_test_AllPass_ResolvesTrue.js: Testing logic.
+//TestSuite_test_AsyncPassNoSynchronousTests_ResolvesTrue.js: Testing logic.
 
 define([
 	"TestSuite",
-	"xGenerateTest",
-	"xGenerateAsyncTest",
 	"promise",
-	"log"
+	"xGenerateAsyncTest"
 ], function(
 	TestSuite,
-	xGenerateTest,
-	xGenerateAsyncTest,
 	promise,
-	log
+	xGenerateAsyncTest
 ) {
 	return {
-		"Async": true,
-		"Name":"TestSuite_test_AllPass_ResolvesTrue",
+		"Async":true,
+		"Name":"TestSuite_test_AsyncPassNoSynchronousTests_ResolvesTrue",
 		"Input": new TestSuite({
-			"TestCollection": [
-				xGenerateTest({
-					"Name": "SimpleTest",
-					"Input": undefined,
-					"Function": function() {
-						return true;
-					},
-					"ExpectedOutput": true
-				})
-			],
 			"AsyncTestCollection": [
 				xGenerateAsyncTest({
 					"Async": true,
@@ -34,7 +20,7 @@ define([
 					"Input": undefined,
 					"Function": function() {
 						return promise(function( resolve ) {
-							resolve( true );
+							resolve(true);
 						});
 					},
 					"ExpectedOutput": true
@@ -48,9 +34,6 @@ define([
 				});
 			});
 		},
-		"ExpectedOutput": true,
-		"Comparator": {
-			"Debug": false
-		}
+		"ExpectedOutput": true
 	};
 });

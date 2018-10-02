@@ -8,6 +8,7 @@ define([
 	"Functions/bIsObjectEqual",
 	"Functions/log",
 	"Functions/add",
+	"Functions/test",
 	"xGenerateTest",
 	"xAddTest",
 	"bTestAll",
@@ -21,6 +22,7 @@ define([
 	bIsObjectEqual,
 	log,
 	add,
+	test,
 	xGenerateTest,
 	xAddTest,
 	bTestAll,
@@ -45,7 +47,8 @@ define([
     "bTestAll": bTestAll,
     "xGenerateAsyncTest": xGenerateAsyncTest,
     "bTestAllAsync": bTestAllAsync,
-    "add": add
+    "add": add,
+    "test": test
 		
   });
 });   
