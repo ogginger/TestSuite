@@ -11,7 +11,7 @@ define([
 ) {
   return function( Input ) {
 	var xTestSuite = this;
-	log("Running tests...");
+	log( "test_" + xTestSuite.get("MethodUnderTest") + ": Running tests...");
 	return promise(function( resolve ) {
 		if ( 
 			_.isEmpty( 
