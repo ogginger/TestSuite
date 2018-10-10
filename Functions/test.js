@@ -33,13 +33,20 @@ define([
 							SynchronousResult === true
 						) {
 						//if both the synchronous result and the asynchronous result are true then...
+							log("All of the tests passed!");
 							resolve( true );
 						} else {
 						//otherwise both the async result and the synchronous result are not both true so...
+							log("All of the tests did not pass!");
 							resolve( false );
 						}
 					} else {
 				//otherwise there are no synchronous tests so...
+					if ( AsyncResult ) {
+						log("All of the asynchronous tests passed!");
+					} else {
+						log("All of the asynchronous tests did not pass!");
+					}
 					resolve( AsyncResult )
 				}
 			});	
@@ -51,9 +58,10 @@ define([
 		//otherwise the async test collection is empty so...
 		//if the synchronous test collection isn't empty then...
 			//Run all the synchronous tests.
+			log("All of the synchronous tests passed!");
 			resolve(xTestSuite.bTestAll( xTestSuite.get("TestCollection") ));
 		} else {
-			log("Error: There are no tests to test.");
+			log("Error: There are no tests to test!");
 			resolve( false );
 		}
 	});
