@@ -22,20 +22,7 @@
 	"AsyncValidate": "lib/AsyncValidate",
 	"validate": "lib/validate.min"
     },
-    exclude: [
-	
-	"AsyncValidate",
-	"AsyncIterator",
-	"async_every",
-	"bTestAllAsync",
-	"xGenerateAsyncTest",
-	"bTestAll",
-	"xAddTest",
-	"xGenerateTest",
-	"promise",
-	"rsvp", 
-	"backbone", 
-	"underscore", 
+    exclude: [	
 	"jquery"
     ],
     name: "TestSuite",
