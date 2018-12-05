@@ -25,13 +25,13 @@ define([
     "initialize": function() {
       log("test_TestSuite initialized successfully!");
       var xTestSuite = this;
-
+	xTestSuite.set("MethodUnderTest", "TestSuite");
 	/*//Add
 	xTestSuite.add( TestSuite_add_SimpleTest_AddsTestToTestCollection );
 	xTestSuite.add( TestSuite_add_AsyncTest_AddsAsyncTestToAsyncTestCollection );
 	//*/
 
-	///test
+	/*test
 	xTestSuite.add( TestSuite_test_AllPass_ResolvesTrue );
 	xTestSuite.add( TestSuite_test_AsyncPassNoSynchronousTests_ResolvesTrue );
 	xTestSuite.add( TestSuite_test_NoAsyncTestsSynchronousPass_ResolvesTrue );
