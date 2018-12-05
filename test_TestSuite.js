@@ -2,7 +2,7 @@
 
 define([
   "TestSuite_stable",
-  "Functions/log",
+  "log",
   "tests/TestSuite_add_SimpleTest_AddsTestToTestCollection",
 	"tests/TestSuite_add_AsyncTest_AddsAsyncTestToAsyncTestCollection",
 	"tests/TestSuite_test_AllPass_ResolvesTrue",
