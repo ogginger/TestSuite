@@ -59,8 +59,14 @@ define([
 		//otherwise the async test collection is empty so...
 		//if the synchronous test collection isn't empty then...
 			//Run all the synchronous tests.
-			log("All of the synchronous tests passed!");
-			resolve(xTestSuite.bTestAll( xTestSuite.get("TestCollection") ));
+			var bAllTestsPassed = xTestSuite.bTestAll( xTestSuite.get("TestCollection") ));
+			if ( bAllTestsPassed ) {				
+				log("All of the synchronous tests passed!");
+			} else {
+				log("All of the synchronous tests did not pass!");
+			}
+
+			resolve( bAllTestsPassed );
 		} else {
 			log("Error: There are no tests to test!");
 			resolve( false );
