@@ -12,6 +12,7 @@ define([
   return function( Input ) {
 	var xTestSuite = this;
 	log( "test_" + xTestSuite.get("MethodUnderTest") + ": Running tests...");
+	log("Hello!");
 	return promise(function( resolve ) {
 		if ( 
 			_.isEmpty( 
@@ -19,6 +20,7 @@ define([
 			) === false 
 		) {
 		//if the async test collection isn't empty then...
+			log("this");
 			//Run all the asynchronous tests.
 			xTestSuite.bTestAllAsync( xTestSuite.get("AsyncTestCollection") ).then(function( AsyncResult ) {
 				if ( 
@@ -59,6 +61,8 @@ define([
 		//otherwise the async test collection is empty so...
 		//if the synchronous test collection isn't empty then...
 			//Run all the synchronous tests.
+
+			log("Someshite!");
 			var bAllTestsPassed = xTestSuite.bTestAll( xTestSuite.get("TestCollection") );
 			if ( bAllTestsPassed ) {				
 				log("All of the synchronous tests passed!");
