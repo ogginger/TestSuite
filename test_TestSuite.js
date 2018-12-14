@@ -31,7 +31,7 @@ define([
 	xTestSuite.add( TestSuite_add_AsyncTest_AddsAsyncTestToAsyncTestCollection );
 	//*/
 
-	/*test
+	//*test
 	xTestSuite.add( TestSuite_test_AllPass_ResolvesTrue );
 	xTestSuite.add( TestSuite_test_AsyncPassNoSynchronousTests_ResolvesTrue );
 	xTestSuite.add( TestSuite_test_NoAsyncTestsSynchronousPass_ResolvesTrue );

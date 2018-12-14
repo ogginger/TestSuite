@@ -28,7 +28,7 @@ define([
 				) {
 				//if the test collection isn't empty then...
 					//Run all the synchronous tests.
-					var SynchronousResult = xTestSuite.bTestAll( xTestSuite.get("TestCollection") );
+					var SynchronousResult = xTestSuite.bTestAll({ "TestCollection":  xTestSuite.get("TestCollection") });
 						if ( 
 							AsyncResult === true &&
 							SynchronousResult === true
@@ -59,7 +59,7 @@ define([
 		//otherwise the async test collection is empty so...
 		//if the synchronous test collection isn't empty then...
 			//Run all the synchronous tests.
-			var bAllTestsPassed = xTestSuite.bTestAll( xTestSuite.get("TestCollection") );
+			var bAllTestsPassed = xTestSuite.bTestAll({ "TestCollection": xTestSuite.get("TestCollection") });
 			if ( bAllTestsPassed ) {				
 				log("All of the synchronous tests passed!");
 			} else {
