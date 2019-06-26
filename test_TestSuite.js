@@ -9,7 +9,8 @@ define([
 	"tests/TestSuite_test_AsyncPassNoSynchronousTests_ResolvesTrue",
 	"tests/TestSuite_test_NoAsyncTestsSynchronousPass_ResolvesTrue",
 	"tests/TestSuite_test_AsyncPassSynchronousFail_ResolvesFalse",
-	"tests/TestSuite_test_NoTests_ResolvesFalse"
+	"tests/TestSuite_test_NoTests_ResolvesFalse",
+	"tests/TestSuite_test_AsyncRejects_ResolvesFalse"
 ], function(
   TestSuite_stable,
   log,
@@ -19,7 +20,8 @@ define([
 	TestSuite_test_AsyncPassNoSynchronousTests_ResolvesTrue,
 	TestSuite_test_NoAsyncTestsSynchronousPass_ResolvesTrue,
 	TestSuite_test_AsyncPassSynchronousFail_ResolvesFalse,
-	TestSuite_test_NoTests_ResolvesFalse
+	TestSuite_test_NoTests_ResolvesFalse,
+	TestSuite_test_AsyncRejects_ResolvesFalse
 ) {
   return TestSuite_stable.extend({
     "initialize": function() {
@@ -32,11 +34,12 @@ define([
 	//*/
 
 	//*test
-	xTestSuite.add( TestSuite_test_AllPass_ResolvesTrue );
-	xTestSuite.add( TestSuite_test_AsyncPassNoSynchronousTests_ResolvesTrue );
-	xTestSuite.add( TestSuite_test_NoAsyncTestsSynchronousPass_ResolvesTrue );
-	xTestSuite.add( TestSuite_test_AsyncPassSynchronousFail_ResolvesFalse );
-	xTestSuite.add( TestSuite_test_NoTests_ResolvesFalse );
+	//xTestSuite.add( TestSuite_test_AllPass_ResolvesTrue );
+	//xTestSuite.add( TestSuite_test_AsyncPassNoSynchronousTests_ResolvesTrue );
+	//xTestSuite.add( TestSuite_test_NoAsyncTestsSynchronousPass_ResolvesTrue );
+	//xTestSuite.add( TestSuite_test_AsyncPassSynchronousFail_ResolvesFalse );
+	//xTestSuite.add( TestSuite_test_NoTests_ResolvesFalse );
+	xTestSuite.add( TestSuite_test_AsyncRejects_ResolvesFalse );
 	//*/
 	
 	xTestSuite.test();
