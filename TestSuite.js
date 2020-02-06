@@ -1,33 +1,25 @@
 //TestSuite.js: Data logic for a javascript method testing framework.
 
 define([
-	"jquery",
-	"underscore",
 	"backbone",
-	"rsvp",
-	"bIsObjectEqual",
-	"log",
-	"Functions/add",
-	"Functions/test",
+	"add",
+	"test",
 	"xGenerateTest",
 	"xAddTest",
 	"bTestAll",
 	"xGenerateAsyncTest",
-	"bTestAllAsync"
+	"bTestAllAsync",
+	"xAddTests"
 ], function(
-	$,
-	_,
 	backbone,
-	rsvp,
-	bIsObjectEqual,
-	log,
 	add,
 	test,
 	xGenerateTest,
 	xAddTest,
 	bTestAll,
 	xGenerateAsyncTest,
-	bTestAllAsync
+	bTestAllAsync,
+	xAddTests
 ) {
   return backbone.Model.extend({
 
@@ -48,7 +40,7 @@ define([
     "xGenerateAsyncTest": xGenerateAsyncTest,
     "bTestAllAsync": bTestAllAsync,
     "add": add,
-    "test": test
-		
+    "test": test,
+	"xAddTests": xAddTests
   });
 });   

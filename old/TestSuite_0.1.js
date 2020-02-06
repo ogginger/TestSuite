@@ -6,7 +6,7 @@ define([
   "backbone",
 	"rsvp",
 	"Functions/bIsObjectEqual",
-	"Functions/log"
+	"log"
 ], function(
       $,
       _,
