@@ -7,15 +7,10 @@ define([
 ) {
   return function( Input ) {
 	var xTestSuite = this;
+	
 	if (Array.isArray( Input )) {
 		xTestSuite.xAddTests( Input );	
-	} else if ( 
-		typeof Input == "object" &&
-		_.has( Input, "Name" ) &&
-		_.has( Input, "Input" ) &&
-		_.has( Input, "Function" ) &&
-		_.has( Input, "ExpectedOutput" )
-	) {
+	} else if ( typeof Input == "object" ) {
 		if ( 
 			_.has( Input, "Async" ) && 
 			Input.Async === true 
