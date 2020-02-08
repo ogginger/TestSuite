@@ -29,21 +29,21 @@ define([
 				//if the test collection isn't empty then...
 					//Run all the synchronous tests.
 					var SynchronousResult = xTestSuite.bTestAll({ "TestCollection":  xTestSuite.get("TestCollection") });
-						if ( 
-							AsyncResult === true &&
-							SynchronousResult === true
-						) {
-						//if both the synchronous result and the asynchronous result are true then...
-							log("All of the tests passed!");
-							resolve( true );
-						} else {
-						//otherwise both the async result and the synchronous result are not both true so...
-							log("All of the tests did not pass!");
-							resolve( false );
-						}
+					if ( 
+						AsyncResult.Status === true &&
+						SynchronousResult === true
+					) {
+					//if both the synchronous result and the asynchronous result are true then...
+						log("All of the tests passed!");
+						resolve( true );
 					} else {
+					//otherwise both the async result and the synchronous result are not both true so...
+						log("All of the tests did not pass!");
+						resolve( false );
+					}
+				} else {
 				//otherwise there are no synchronous tests so...
-					if ( AsyncResult ) {
+					if ( AsyncResult.Status ) {
 						log("All of the asynchronous tests passed!");
 					} else {
 						log("All of the asynchronous tests did not pass!");
