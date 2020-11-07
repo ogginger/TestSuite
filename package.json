@@ -1,26 +1,22 @@
 {
-  "name": "@ogginger.josh/testsuite",
+  "name": "testsuite",
   "version": "1.0.0",
-  "description": "Javascript implementation of unit testing.",
-  "main": "node_testsuite.js",
-  "directories": {
-    "lib": "lib",
-    "test": "tests"
-  },
+  "description": "Typescript revamp of testing suite.",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ogginger/TestSuite.git"
+    "url": "git+ssh://git@github.com/ogginger/TestSuite.git"
   },
-  "keywords": [
-    "testsuite"
-  ],
-  "author": "og.ginger@gmail.comm",
+  "author": "og.ginger@gmail.com",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/ogginger/TestSuite/issues"
   },
-  "homepage": "https://github.com/ogginger/TestSuite#readme"
+  "homepage": "https://github.com/ogginger/TestSuite#readme",
+  "dependencies": {
+    "lodash": "^4.17.20"
+  }
 }
