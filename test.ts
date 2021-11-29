@@ -22,6 +22,7 @@ class Test {
             throw new Error("The function does not exist.");
         }
         if ( test.context ) {
+            test.context = (typeof test.context == "function")? await test.context(): test.context;
             method = method.bind( test.context, ...test.input );
         } else {
             method = method.bind( this, ...test.input );
