@@ -1,5 +1,5 @@
 {
-  "name": "testsuite",
+  "name": "@ogginger/testsuite",
   "version": "1.0.0",
   "description": "Typescript revamp of testing suite.",
   "main": "index.js",
