@@ -1,0 +1,24 @@
+{
+    "compilerOptions": {
+        "lib": [ "ESNext", "DOM" ],
+        "target": "ES5",
+        "module": "commonjs", 
+        "moduleResolution": "node",
+        "sourceMap": true,
+        "emitDecoratorMetadata": false, 
+        "experimentalDecorators": true,
+        "allowSyntheticDefaultImports" :true,
+        "noEmitOnError": true,
+        "removeComments": true,
+        "noImplicitAny": true,        
+        "esModuleInterop": true,
+        "resolveJsonModule": true,
+        "declaration": true,
+        "outDir": "builds"
+    },
+    "exclude": [
+        "node_modules",
+        "builds"
+    ],
+    "include": [ "**/*.ts" ]
+}
