@@ -78,8 +78,9 @@ class Test {
     }
 }
 
-export default async function test( tests: any ) {
+export default async function test( tests: any[] ) {
     console.log("Running tests...");
+    tests = tests.filter(( test: any ) => test.run || test.run == undefined);
     let result = await new Test( tests ).evaluate();
     console.log( result.message );
     return result.state;
