@@ -35,13 +35,21 @@ class Test {
                 exception = error.toString? error.toString(): JSON.stringify( error );
             } finally {
                 output = exception;
-                test.output = test.output.toString? test.output.toString(): JSON.stringify( test.output );
-                testResult = (output == test.output);
+                if ( typeof test.output == "function" ) {
+                    test.output = await test.output( output );
+                } else {
+                    test.output = test.output.toString? test.output.toString(): JSON.stringify( test.output );
+                    testResult = (output == test.output);
+                }
             }
         } else {
             try {
                 output = await method();
-                testResult = JSON.stringify( output ) == JSON.stringify( test.output );
+                if ( typeof test.output == "function" ) {
+                    test.output = await test.output( output );
+                } else {
+                    testResult = JSON.stringify( output ) == JSON.stringify( test.output );
+                }
             } catch ( error ) {
                 console.log(error.toString? error.toString(): JSON.stringify( error ));
                 testResult = false;
