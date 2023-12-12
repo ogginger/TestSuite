@@ -20,5 +20,5 @@
         "node_modules",
         "builds"
     ],
-    "include": [ "**/*.ts" ]
+    "include": [ "src/*.ts" ]
 }
