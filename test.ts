@@ -27,6 +27,9 @@ class Test {
         } else {
             method = method.bind( this, ...test.input );
         }
+        if ( typeof test.output == "function" ) {
+            test.output = await test.output( output );
+        }
         if ( test.exception ) {
             let exception = undefined;
             try {
@@ -35,26 +38,26 @@ class Test {
                 exception = error.toString? error.toString(): JSON.stringify( error );
             } finally {
                 output = exception;
-                if ( typeof test.output == "function" ) {
-                    test.output = await test.output( output );
-                } else {
-                    test.output = test.output.toString? test.output.toString(): JSON.stringify( test.output );
-                    testResult = (output == test.output);
-                }
             }
         } else {
             try {
                 output = await method();
-                if ( typeof test.output == "function" ) {
-                    test.output = await test.output( output );
-                } else {
-                    testResult = JSON.stringify( output ) == JSON.stringify( test.output );
-                }
             } catch ( error ) {
                 console.log(error.toString? error.toString(): JSON.stringify( error ));
                 testResult = false;
             }
         }
+        
+        if ( typeof test.assert == "function" ) {
+            testResult = test.assert.call( test.context, output, test.output );
+        } else if ( test.assert ) {} else {
+            testResult = (JSON.stringify( output ) == JSON.stringify(test.output));
+        }
+        
+        if ( test.cleanup ) {
+            await test.cleanup.call( test.context, output, ...test.input );
+        }
+
         if ( test.debug ) {
             console.log("Output: ", JSON.stringify( output ));
             console.log("Expected: ", JSON.stringify( test.output ));
