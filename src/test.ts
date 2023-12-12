@@ -13,10 +13,9 @@ async function every( array: any[], callback: any ) {
 
 class Test {
     constructor( protected tests: any[] = [] ) {}
-
     protected async testFunction( test: any ): Promise<boolean> {
-        let testResult: boolean = undefined;
-        let output: any = undefined;
+        let testResult: boolean;
+        let output: any;
         let method: any = test.function;
         if ( method == undefined ) {
             throw new Error("The function does not exist.");
@@ -26,9 +25,6 @@ class Test {
             method = method.bind( test.context, ...test.input );
         } else {
             method = method.bind( this, ...test.input );
-        }
-        if ( typeof test.output == "function" ) {
-            test.output = await test.output( output );
         }
         if ( test.exception ) {
             let exception = undefined;
@@ -47,22 +43,23 @@ class Test {
                 testResult = false;
             }
         }
-        
+        if ( typeof test.output == "function" ) {
+            test.output = await test.output( output );
+        }
         if ( typeof test.assert == "function" ) {
             testResult = test.assert.call( test.context, output, test.output );
-        } else if ( test.assert ) {} else {
+        } else if ( test.assert ) {
+            throw new Error("The assert method needs to be a function.");
+        } else {
             testResult = (JSON.stringify( output ) == JSON.stringify(test.output));
         }
-        
         if ( test.cleanup ) {
             await test.cleanup.call( test.context, output, ...test.input );
         }
-
         if ( test.debug ) {
             console.log("Output: ", JSON.stringify( output ));
             console.log("Expected: ", JSON.stringify( test.output ));
         }
-
         return testResult;
     }
 
