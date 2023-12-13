@@ -18,6 +18,7 @@ class Test {
         let output: any;
         let method: any = test.function;
         if ( method == undefined ) {
+            console.log(test.name + " failed!");
             throw new Error("The function does not exist.");
         }
         if ( test.context ) {
@@ -43,19 +44,31 @@ class Test {
                 testResult = false;
             }
         }
-        if ( typeof test.output == "function" ) {
-            test.output = await test.output( output );
+        try {
+            if ( typeof test.output == "function" ) {
+                test.output = await test.output( output );
+            }
+            if ( typeof test.assert == "function" ) {
+                testResult = test.assert.call( test.context, output, test.output );
+            } else if ( test.assert ) {
+                throw new Error("The assert method needs to be a function.");
+            } else {
+                testResult = (JSON.stringify( output ) == JSON.stringify(test.output));
+            }
+        } catch ( error ) {
+            console.log(test.name + " failed!");
+            throw error;
         }
-        if ( typeof test.assert == "function" ) {
-            testResult = test.assert.call( test.context, output, test.output );
-        } else if ( test.assert ) {
-            throw new Error("The assert method needs to be a function.");
-        } else {
-            testResult = (JSON.stringify( output ) == JSON.stringify(test.output));
+        
+        try {
+            if ( test.cleanup ) {
+                await test.cleanup.call( test.context, output, ...test.input );
+            }
+        } catch ( error ) {
+            console.log(test.name + " cleanup throw an error!");
+            console.log(error.toString? error.toString(): JSON.stringify( error ));
         }
-        if ( test.cleanup ) {
-            await test.cleanup.call( test.context, output, ...test.input );
-        }
+        
         if ( test.debug ) {
             console.log("Output: ", JSON.stringify( output ));
             console.log("Expected: ", JSON.stringify( test.output ));
