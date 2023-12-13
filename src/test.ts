@@ -21,51 +21,50 @@ class Test {
             console.log(test.name + " failed!");
             throw new Error("The function does not exist.");
         }
-        if ( test.context ) {
-            test.context = (typeof test.context == "function")? await test.context(): test.context;
-            method = method.bind( test.context, ...test.input );
-        } else {
-            method = method.bind( this, ...test.input );
-        }
-        if ( test.exception ) {
-            let exception = undefined;
-            try {
-                await method();
-            } catch ( error ) {
-                exception = error.toString? error.toString(): JSON.stringify( error );
-            } finally {
-                output = exception;
-            }
-        } else {
-            try {
-                output = await method();
-            } catch ( error ) {
-                console.log(error.toString? error.toString(): JSON.stringify( error ));
-                testResult = false;
-            }
+        if ( test.assert && typeof test.assert != "function" ) {
+            console.log(test.name + " failed!");
+            throw new Error("The assert method needs to be a function.");
         }
         try {
+            if ( typeof test.input == "function" ) {
+                test.input = await test.input();
+            }
+            if ( test.context ) {
+                test.context = (typeof test.context == "function")? await test.context(): test.context;
+                method = method.bind( test.context, ...test.input );
+            } else {
+                method = method.bind( this, ...test.input );
+            }
+            if ( test.exception ) {
+                let exception = undefined;
+                try {
+                    await method();
+                } catch ( error ) {
+                    exception = error.toString? error.toString(): JSON.stringify( error );
+                } finally {
+                    output = exception;
+                }
+            } else {
+                output = await method();
+            }
             if ( typeof test.output == "function" ) {
                 test.output = await test.output( output );
             }
-            if ( typeof test.assert == "function" ) {
+            if ( test.assert ) {
                 testResult = test.assert.call( test.context, output, test.output );
-            } else if ( test.assert ) {
-                throw new Error("The assert method needs to be a function.");
             } else {
                 testResult = (JSON.stringify( output ) == JSON.stringify(test.output));
             }
         } catch ( error ) {
-            console.log(test.name + " failed!");
-            throw error;
+            console.log(error.toString? error.toString(): JSON.stringify( error ));
+            testResult = false;
         }
-        
         try {
             if ( test.cleanup ) {
                 await test.cleanup.call( test.context, output, ...test.input );
             }
         } catch ( error ) {
-            console.log(test.name + " cleanup throw an error!");
+            console.log(test.name + " cleanup threw an error!");
             console.log(error.toString? error.toString(): JSON.stringify( error ));
         }
         
