@@ -1,6 +1,6 @@
 {
   "name": "@ogginger/testsuite",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Typescript revamp of testing suite.",
   "main": "builds/test.js",
   "scripts": {

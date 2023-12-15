@@ -16,6 +16,7 @@ class Test {
     protected async testFunction( test: any ): Promise<boolean> {
         let testResult: boolean;
         let output: any;
+        let expected: any;
         let method: any = test.function;
         if ( method == undefined ) {
             console.log(test.name + " failed!");
@@ -48,10 +49,19 @@ class Test {
                 output = await method();
             }
             if ( typeof test.output == "function" ) {
-                test.output = await test.output( output );
+                expected = await test.output.call( test.context, output, ...test.input);
+            } else {
+                expected = test.output;
+            }
+            if ( typeof test.expected == "function" ) {
+                expected = await test.expected.call( test.context, output, ...test.input );
+                output = expected;
+            } else if ( test.expected != undefined ) {
+                expected = test.expected;
+                output = expected;
             }
             if ( test.assert ) {
-                testResult = test.assert.call( test.context, output, test.output );
+                testResult = test.assert.call( test.context, output, expected, ...test.input );
             } else {
                 testResult = (JSON.stringify( output ) == JSON.stringify(test.output));
             }
