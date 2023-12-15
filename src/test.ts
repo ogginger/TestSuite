@@ -49,21 +49,21 @@ class Test {
                 output = await method();
             }
             if ( typeof test.output == "function" ) {
-                expected = await test.output.call( test.context, output, ...test.input);
-            } else {
-                expected = test.output;
+                test.output = await test.output.call( test.context, output, ...test.input);
             }
             if ( typeof test.expected == "function" ) {
                 expected = await test.expected.call( test.context, output, ...test.input );
-                output = expected;
+                output = test.output;
             } else if ( test.expected != undefined ) {
                 expected = test.expected;
-                output = expected;
+                output = test.output;
+            } else {
+                expected = test.output;
             }
             if ( test.assert ) {
                 testResult = test.assert.call( test.context, output, expected, ...test.input );
             } else {
-                testResult = (JSON.stringify( output ) == JSON.stringify(test.output));
+                testResult = (JSON.stringify( output ) == JSON.stringify( expected ));
             }
         } catch ( error ) {
             console.log(error.toString? error.toString(): JSON.stringify( error ));
@@ -80,7 +80,7 @@ class Test {
         
         if ( test.debug ) {
             console.log("Output: ", JSON.stringify( output ));
-            console.log("Expected: ", JSON.stringify( test.output ));
+            console.log("Expected: ", JSON.stringify( expected ));
         }
         return testResult;
     }
