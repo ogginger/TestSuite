@@ -6,8 +6,9 @@
             "command": "tsc",
             "type": "shell",
             "args": [
+                "-d",
                 "-p",
-                "."
+                ".",
             ],
             "problemMatcher": [
                 "$tsc"

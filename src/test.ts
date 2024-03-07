@@ -27,15 +27,17 @@ class Test {
             throw new Error("The assert method needs to be a function.");
         }
         try {
-            if ( typeof test.input == "function" ) {
-                test.input = await test.input();
-            }
+            
             if ( test.context ) {
-                test.context = (typeof test.context == "function")? await test.context(): test.context;
-                method = method.bind( test.context, ...test.input );
-            } else {
-                method = method.bind( this, ...test.input );
+                test.context = (typeof test.context == "function")? await test.context( test ): test.context;
             }
+            if ( typeof test.input == "function" ) {
+                test.input = await test.input.call( test.context );
+            }
+            if ( Array.isArray( test.input ) == false ) {
+                test.input = [ test.input ];
+            }
+            method = method.bind( test.context, ...test.input );
             if ( test.exception ) {
                 let exception = undefined;
                 try {
